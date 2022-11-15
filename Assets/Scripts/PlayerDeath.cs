@@ -31,6 +31,14 @@ public class PlayerDeath : MonoBehaviour
 
     private void RestartLevel()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        PickUp.lives--;
+        if (PickUp.lives >= 0)
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        }
+        else if (PickUp.lives < 0)
+        {
+            SceneManager.LoadScene("End Screen");
+        }
     }
 }

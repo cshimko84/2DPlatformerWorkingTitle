@@ -12,6 +12,16 @@ public class PickUp : MonoBehaviour
 
     [SerializeField] private AudioSource collectionSound;
 
+    public static int lives = 3;
+
+    [SerializeField] private Text livesText;
+
+
+    private void Start()
+    {
+        livesText.text = "Lives: " + lives;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Banana"))
@@ -20,7 +30,15 @@ public class PickUp : MonoBehaviour
             Destroy(collision.gameObject);
             bananas++;
             bananasText.text = "Bananas: " + bananas;
-        }    
-    }
+        }
+        
+        if (collision.gameObject.CompareTag("Life"))
+        {
+            collectionSound.Play();
+            Destroy(collision.gameObject);
+            lives++;
+            livesText.text = "Lives: " + lives;
+        }
 
+    }
 }
