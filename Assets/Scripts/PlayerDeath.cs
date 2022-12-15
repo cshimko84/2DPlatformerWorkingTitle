@@ -8,6 +8,8 @@ public class PlayerDeath : MonoBehaviour
     private Rigidbody2D rb;
     private Animator deathAnim;
 
+    [SerializeField] private AudioSource deathSound;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,8 +27,10 @@ public class PlayerDeath : MonoBehaviour
 
     private void Die()
     {
-        rb.bodyType = RigidbodyType2D.Static;
+        
+        rb.constraints = RigidbodyConstraints2D.FreezePosition;
         deathAnim.SetTrigger("Death");
+        deathSound.Play();
     }
 
     private void RestartLevel()
@@ -38,7 +42,7 @@ public class PlayerDeath : MonoBehaviour
         }
         else if (PickUp.lives < 0)
         {
-            SceneManager.LoadScene("End Screen");
+            SceneManager.LoadScene("Game Over");
         }
     }
 }

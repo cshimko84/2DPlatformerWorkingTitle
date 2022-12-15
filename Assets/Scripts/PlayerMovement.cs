@@ -37,7 +37,6 @@ public class PlayerMovement : MonoBehaviour
         // left and right input
         dirX = Input.GetAxisRaw("Horizontal");
 
-        // Joystick support
         rb.velocity = new Vector2(dirX * moveSpeed, rb.velocity.y);
 
         if (Input.GetButtonDown("Jump") && onGround())

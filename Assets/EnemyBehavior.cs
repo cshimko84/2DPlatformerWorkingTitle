@@ -7,18 +7,15 @@ public class EnemyBehavior : MonoBehaviour
     private Animator anim;
     private Rigidbody2D rb;
     private BoxCollider2D bc;
+
+    [SerializeField] private AudioSource popSound;
+
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         bc = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -28,7 +25,9 @@ public class EnemyBehavior : MonoBehaviour
 
             bc.enabled = false;
             anim.SetBool("dead", true);
+            popSound.Play();
             //Destroy(gameObject);
+         
 
         }
     }

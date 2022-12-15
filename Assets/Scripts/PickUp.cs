@@ -13,7 +13,7 @@ public class PickUp : MonoBehaviour
 
     [SerializeField] private AudioSource collectionSound;
 
-    public static int lives = 3;
+    public static int lives = 1;
 
     [SerializeField] private Text livesText;
 
